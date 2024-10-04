@@ -1,0 +1,32 @@
+def registrar_usuario():
+    print("Registro de novo usuário\n")
+    
+    # Coletar informações
+    nome = input("Digite o nome: ")
+    email = input("Digite o e-mail: ")
+    
+    # Exibir os dados para confirmação
+    print("\nPor favor, confirme os dados:")
+    print(f"Nome: {nome}")
+    print(f"E-mail: {email}")
+    
+    # Solicitar confirmação do usuário
+    confirmacao = input("\nOs dados estão corretos? (s/n): ").lower()
+    
+    if confirmacao == 's':
+        # Registro confirmado
+        print("\nRegistro concluído com sucesso!")
+        salvar_registro(nome, email)
+    else:
+        # Caso o usuário deseje corrigir as informações
+        print("\nCancelando o registro. Tente novamente.")
+        registrar_usuario()
+
+def salvar_registro(nome, email):
+    """Função que simula o salvamento dos dados do usuário."""
+    with open("usuarios_registrados.txt", "a") as arquivo:
+        arquivo.write(f"Nome: {nome}, E-mail: {email}\n")
+
+# Execução principal
+if __name__ == "__main__":
+    registrar_usuario()
